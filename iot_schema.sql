@@ -22,40 +22,26 @@ create table actions (
     action_name varchar(50)
     );
 create table events (
-	Date_time datetime primary key,
-    type varchar(50),
+	event_id int primary key,
+	Date_time datetime,type varchar(50),
     start_time datetime,
     end_time datetime
     );
-alter table sites 
-add foreign key(device_id)
-references devices(device_id);
-
-alter table users
-add foreign key(role_id)
-references roles(role_id);
-
-create table sites_users(
-	site_id varchar(50),
+create table devicedata(
+	site_id varchar(20),
+    device_id varchar(20),
     user_id int,
-    primary key (site_id,user_id),
+    event_id int,
     foreign key(site_id) references sites(site_id),
-    foreign key(user_id) references users(user_id)
+    foreign key(device_id) references devices(device_id),
+    foreign key(user_id) references users(user_id),
+    foreign key(event_id) references events(event_id)
 );
-
-create table user_role(
+create table role_action(
 	user_id int,
     role_id int,
-    primary key (user_id, role_id),
-    foreign key(user_id) references users(user_id),
-    foreign key(role_id) references roles(role_id)
-);
-create table rol_action(
-	role_id int,
     action_id int,
-    primary key(role_id,action_id),
+    foreign key(user_id) references users(user_id),
     foreign key(role_id) references roles(role_id),
     foreign key(action_id) references actions(action_id)
-    
 );
-
