@@ -24,24 +24,29 @@ create table actions (
 create table events (
 	event_id int primary key,
 	Date_time datetime,type varchar(50),
+    device_id varchar(20) DEFAULT NULL,
+    user_id int DEFAULT NULL,
     start_time datetime,
-    end_time datetime
+    end_time datetime,
+    foreign key(device_id) references devices(device_id),
+    foreign key(user_id) references users(user_id)
     );
 create table devicedata(
-	site_id varchar(20),
+	  site_id varchar(20),
     device_id varchar(20),
     user_id int,
-    event_id int,
+    site_role int,
+    device_role int,
     foreign key(site_id) references sites(site_id),
     foreign key(device_id) references devices(device_id),
     foreign key(user_id) references users(user_id),
-    foreign key(event_id) references events(event_id)
+    foreign key(site_role) references roles(role_id),
+    foreign key(device_role) references roles(role_id)
 );
 create table role_action(
-	user_id int,
-    role_id int,
-    action_id int,
-    foreign key(user_id) references users(user_id),
+	role_id int,
+  action_id int,
+    primary key(role_id,action_id),
     foreign key(role_id) references roles(role_id),
     foreign key(action_id) references actions(action_id)
 );
