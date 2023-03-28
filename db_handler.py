@@ -29,7 +29,6 @@ class DbHandler:
     def run_query_return(self, query):
         """
         run sql query on database and return query results
-
         :param query:
         :return: Query result, else None if query fails
         """
