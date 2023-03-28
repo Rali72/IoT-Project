@@ -40,3 +40,5 @@ class DbHandler:
     def close(self):
         self.conn.close()
 
+    def commit(self):
+        self.conn.commit()

@@ -1,30 +1,30 @@
 create database IoT;
 use IoT;
 create table sites (
-	site_id varchar(20) primary key,
+	site_id int(20) primary key auto_increment,
 	site_name varchar(100)
 	);
 create table devices (
-	device_id varchar(20) primary key,
+	device_id int primary key auto_increment,
     device_name varchar(100)
     );
 create table users (
-	user_id int primary key,
+	user_id int primary key auto_increment,
     user_name varchar(100),
     email varchar(100)
     );
 create table roles (
-	role_id int primary key,
+	role_id int primary key auto_increment,
     role_name varchar(50)
     );
 create table actions (
-	action_id int primary key,
+	action_id int primary key auto_increment,
     action_name varchar(50)
     );
 create table events (
-	event_id int primary key,
+	event_id int primary key auto_increment,
 	Date_time datetime,type varchar(50),
-    device_id varchar(20) DEFAULT NULL,
+    device_id int DEFAULT NULL,
     user_id int DEFAULT NULL,
     start_time datetime,
     end_time datetime,
@@ -32,8 +32,8 @@ create table events (
     foreign key(user_id) references users(user_id)
     );
 create table devicedata(
-	  site_id varchar(20),
-    device_id varchar(20),
+	  site_id int,
+    device_id int,
     user_id int,
     site_role int,
     device_role int,
