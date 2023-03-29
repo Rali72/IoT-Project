@@ -1,4 +1,5 @@
-from mysql.connector import connect,errors
+from mysql.connector import connect, errors
+
 
 class DbHandler:
     def __init__(self, creds):
@@ -22,9 +23,9 @@ class DbHandler:
         :param query:
         :return: True: if query succeeds, else False
         """
+        # TODO fix return values
         self.curs.execute(query)
         return
-
 
     def run_query_return(self, query):
         """
@@ -33,6 +34,7 @@ class DbHandler:
         :param query:
         :return: Query result, else None if query fails
         """
+        # TODO fix return values
         self.curs.execute(query)
         result = self.curs.fetchall()
         return result
