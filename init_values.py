@@ -1,6 +1,6 @@
 actions = ['read', 'write', 'delete', 'create', 'update']
 roles = ['admin', 'reader', 'writer', 'owner']
-role_actions = [('owner', actions), ('admin', actions.remove('delete')),
+role_action = [('owner', actions), ('admin', ['read', 'write', 'create', 'update']),
                 ('reader', ['read']), ('writer', ['read', 'write', 'update'])]
 
 users = ['anum', 'riaz', 'usman', 'john', 'henry']
