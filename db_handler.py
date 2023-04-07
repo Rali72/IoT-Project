@@ -1,4 +1,5 @@
-from mysql.connector import connect,errors
+from mysql.connector import connect, errors
+
 
 class DbHandler:
     def __init__(self, creds):
@@ -9,10 +10,10 @@ class DbHandler:
         db_database = creds.get('mysql', 'database')
 
         self.conn = connect(
-            host = db_host,
-            user =db_user,
-            password = db_password,
-            database =db_database
+            host=db_host,
+            user=db_user,
+            password=db_password,
+            database=db_database
         )
         self.curs = self.conn.cursor()
 
@@ -22,9 +23,13 @@ class DbHandler:
         :param query:
         :return: True: if query succeeds, else False
         """
-        self.curs.execute(query)
-        return
-
+        # TODO fix return values
+        try:
+            self.curs.execute(query)
+            return True
+        except Exception as e:
+            print(f'Query failed. reasons = {e}')
+            return False
 
     def run_query_return(self, query):
         """
@@ -33,9 +38,12 @@ class DbHandler:
         :param query:
         :return: Query result, else None if query fails
         """
-        self.curs.execute(query)
-        result = self.curs.fetchall()
-        return result
+        try:
+            self.curs.execute(query)
+            result = self.curs.fetchall()
+            return result
+        except Exception as e:
+            return False
 
     def close(self):
         self.conn.close()

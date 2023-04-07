@@ -32,7 +32,7 @@ create table events (
     foreign key(user_id) references users(user_id)
     );
 create table devicedata(
-	  site_id int,
+	site_id int,
     device_id int,
     user_id int,
     site_role int,
@@ -44,9 +44,9 @@ create table devicedata(
     foreign key(device_role) references roles(role_id)
 );
 create table role_action(
-	role_id int,
-  action_id int,
-    primary key(role_id,action_id),
+	role_id int DEFAULT Null,
+    action_id int DEFAULT NULL,
+    UNIQUE(role_id,action_id),
     foreign key(role_id) references roles(role_id),
     foreign key(action_id) references actions(action_id)
 );
